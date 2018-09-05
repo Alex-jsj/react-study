@@ -21,8 +21,8 @@ class TodoList extends Component {
         <div>
           <input type="text"/>
           <button onClick={this.handleBtnClick.bind(this)}>add</button>
-        </div>
-        <ul>
+          </div>
+        <ul> 
           {
             this.state.list.map((item,index)=>{
               return <li key={index}>{item}</li>
