@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 
-class TodoList extends Component {
+class App extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      list:[]
+      list: []
     }
   }
 
-  handleBtnClick(){
+  handleBtnClick() {
     this.setState({
-      list:[...this.state.list,'222']
+      list: [...this.state.list, '222']
     })
   }
 
@@ -19,20 +19,19 @@ class TodoList extends Component {
     return (
       <div>
         <div>
-          <input type="text"/>
+          <input type="text" />
           <button onClick={this.handleBtnClick.bind(this)}>add</button>
-          </div>
-        <ul> 
+        </div>
+        <ul>
           {
-            this.state.list.map((item,index)=>{
+            this.state.list.map((item, index) => {
               return <li key={index}>{item}</li>
             })
           }
         </ul>
       </div>
-
     );
   }
 }
- 
-export default TodoList;
+
+export default App;
