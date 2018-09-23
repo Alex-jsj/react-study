@@ -8,18 +8,20 @@ class TodoItem extends Component {
     }
 
     render() {
+        const { content } = this.props;
         return (
             <Fragment>
                 <div
                     onClick={this.handleClick}>
-                    {this.props.content}
+                    {content}
                 </div>
             </Fragment>
         );
     }
 
     handleClick() {
-        this.props.handleItemDelete(this.props.idx)
+        const { handleItemDelete, idx } = this.props;
+        handleItemDelete(idx)
     }
 }
 
