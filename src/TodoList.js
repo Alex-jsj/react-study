@@ -15,7 +15,27 @@ class TodoList extends Component {
         this.handleItemDelete = this.handleItemDelete.bind(this);
     }
 
+    // 在组件即将被挂载到页面的时刻执行
+    componentWillMount() {
+        // console.log('componentWillMount')
+    }
+    // 在组件被更新之前执行
+    shouldComponentUpdate = (nextProps, nextState) => {
+        // console.log('shouldComponentUpdate')
+        return true;
+    }
+    // 在组件即将更新之前执行 shouldComponentUpdate 返回true才执行
+    componentWillUpdate = () => {
+        // console.log('componentWillUpdate')
+    }
+    // 在组件更新完成执行
+    componentDidUpdate = () => {
+        // console.log('componentDidUpdate')
+    }
+
+    //挂载页面
     render() {
+        // console.log('render')
         return (
             <Fragment>
                 <div>
@@ -25,6 +45,7 @@ class TodoList extends Component {
                         className="input"
                         value={this.state.inputValue}
                         onChange={this.handleInputChange}
+                        ref={(val) => { this.input = val }}
                     />
                     <button onClick={this.handleBtnClick}>add</button>
                 </div>
@@ -34,6 +55,11 @@ class TodoList extends Component {
             </Fragment>
         );
     }
+    // 在组件被挂载到页面之后执行
+    componentDidMount() {
+        console.log('componentDidMount')
+    }
+
 
     getTodoItem() {
         return this.state.list.map((item, index) => {
@@ -48,8 +74,8 @@ class TodoList extends Component {
         })
     }
 
-    handleInputChange(e) {
-        const value = e.target.value;
+    handleInputChange() {
+        const value = this.input.value;
         this.setState(() => ({
             inputValue: value
         }))
@@ -59,7 +85,9 @@ class TodoList extends Component {
         this.setState((prevState) => ({
             inputValue: '',
             list: [...prevState.list, prevState.inputValue]
-        }))
+        }), () => {
+
+        })
     }
 
     handleItemDelete(index) {
