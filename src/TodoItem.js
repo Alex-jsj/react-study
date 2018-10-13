@@ -7,6 +7,16 @@ class TodoItem extends Component {
         super(props);
         this.handleClick = this.handleClick.bind(this);
     }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps.content !== this.props.content) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
     // 当一个组件从父组件接受了参数
     // 只要父组件的render被重新执行，子组件的生命周期函数就会被执行
     // 如果这个组件第一次存在于父组件中，不会被执行
