@@ -2,18 +2,20 @@ import React, { Component, Fragment } from 'react';
 import TodoItem from './TodoItem';
 import axios from "axios";
 
-class TodoList extends Component {
+class App extends Component {
 
     //构造函数
     constructor(props) {
         super(props);
         this.state = {
             inputValue: '',
-            list: []
+            list: [],
+            show: true
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleBtnClick = this.handleBtnClick.bind(this);
         this.handleItemDelete = this.handleItemDelete.bind(this);
+        this.handleToggle = this.handleToggle.bind(this);
     }
 
     // 在组件即将被挂载到页面的时刻执行
@@ -51,6 +53,8 @@ class TodoList extends Component {
                 <ul>
                     {this.getTodoItem()}
                 </ul>
+                <div className={this.state.show ? 'show' : 'hide'}>hello</div>
+                <button onClick={this.handleToggle}>toggle</button>
             </Fragment>
         );
     }
@@ -58,8 +62,12 @@ class TodoList extends Component {
     componentDidMount() {
         //ajax
         axios.get('/api/todoList')
-            .then(() => {
-                console.log('success')
+            .then((res) => {
+                this.setState(() => {
+                    return {
+                        list: [...res.data]
+                    }
+                })
             })
             .catch(() => {
                 console.log('error')
@@ -77,6 +85,15 @@ class TodoList extends Component {
                     handleItemDelete={this.handleItemDelete}
                 />
             )
+        })
+    }
+
+    handleToggle() {
+        this.setState((prevState) => {
+            const the_show = prevState.show ? false : true;
+            return {
+                show: the_show
+            }
         })
     }
 
@@ -105,4 +122,4 @@ class TodoList extends Component {
     }
 }
 
-export default TodoList;
+export default App;
