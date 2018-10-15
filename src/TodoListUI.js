@@ -15,7 +15,7 @@ const TodoListUI = (props) => {
                 style={{ marginTop: '10px', width: '300px' }}
                 bordered
                 dataSource={props.list}
-                renderItem={(item, index) => (<List.Item onClick={(index) => { props.deleteItem(index) }}>{item}</List.Item>)}
+                renderItem={(item, index) => (<List.Item onClick={() => { props.deleteItem(index) }}>{item}</List.Item>)}
                 locale={{ emptyText: '暂无数据' }}
             />
         </div>
