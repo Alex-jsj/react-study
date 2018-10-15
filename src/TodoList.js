@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import store from './store';
 import { getInputChangeAction, getListChangeAction, getDeleteItemAction } from './store/actionCreators';
-import TodolistUI from './TodoListUI'
+import TodoListUI from './TodoListUI'
 
 
 class TodoList extends Component {
@@ -19,7 +19,7 @@ class TodoList extends Component {
 
     render() {
         return (
-            <TodolistUI
+            <TodoListUI
                 inputVal={this.state.inputVal}
                 handleInputChange={this.handleInputChange}
                 handleChangeList={this.handleChangeList}
